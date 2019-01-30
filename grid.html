@@ -6,13 +6,7 @@
     <script>
      
       function changecolor(id){ 
-        var color, flag;
-        if(document.getElementById('r').checked==true){
-        color='red';}
-        else if(document.getElementById('b').checked==true){
-        color='blue';}
-        else if(document.getElementById('g').checked==true){
-        color='green';}
+        var color = var color = document.querySelector('input[name="btcolor"]:checked').value;
         document.getElementById(id).style.background=color;
       }
      
