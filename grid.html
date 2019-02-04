@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Grid_game</title>
+  </head>  
+  <body>   
+    <script>
+     
+      function changecolor(id){ 
+        var color = var color = document.querySelector('input[name="btcolor"]:checked').value;
+        document.getElementById(id).style.background=color;
+      }
+     
+      function reset_cell(color){
+        for(var i=1;i<=9;i++){
+          document.getElementById(i.toString()).style.background = color;
+          document.getElementById(i.toString()).value = i.toString();
+        }
+        document.getElementById('r').checked=false;
+        document.getElementById('b').checked=false;
+        document.getElementById('g').checked=false;       
+      }
+     
+      function shuffle_cell(){
+        var a=['1','2','3','4','5','6','7','8','9'];
+        function shuffle(array){
+          var currentIndex = array.length, temporaryValue, randomIndex;
+          while (0 !== currentIndex){
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+            return array;
+        }
+        var z=shuffle(a);
+        for(var i=1;i<=9;i++){  
+          document.getElementById(i.toString()).value = z[i-1];
+          document.getElementById(i.toString()).style.background = document.getElementById(z[i-1]).style.background;
+        }
+      }
+     
+    </script>   
+     
+    <form>
+      <table>
+        <tr>
+          <td><h3>Grid Play</h3></td>
+          <td><h6>with react.js</h6></td>
+        </tr>
+
+        <tr>
+          <td><input type="radio" id="r" value="red" name="radio"> Red</td>
+          <td><input type="radio" id="b" value="blue" name="radio"> Blue</td>
+          <td><input type="radio" id="g" value="green" name="radio"> Green</td>
+        </tr>
+
+        <tr>
+          <td><input id="1"type="button" name="one" value="1" onclick="changecolor('1')"></td>
+          <td><input id="2"type="button" name="two" value="2" onclick="changecolor('2')"></td>
+          <td><input id="3"type="button" name="three" value="3" onclick="changecolor('3')"></td>
+        </tr>
+
+        <tr>
+          <td><input id="4" type="button" name="four" value="4" onclick="changecolor('4')"></td>
+          <td><input id="5" type="button" name="five" value="5" onclick="changecolor('5')"></td>
+          <td><input id="6" type="button" name="six" value="6" onclick="changecolor('6')"></td>
+        </tr>
+
+        <tr>
+          <td><input id="7" type="button" name="seven" value="7" onclick="changecolor('7')"></td>
+          <td><input id="8" type="button" name="eight" value="8" onclick="changecolor('8')"></td>
+          <td><input id="9" type="button" name="nine" value="9" onclick="changecolor('9')"></td>
+        </tr>
+
+        <tr>
+          <td><input type="button" name="Shuffle" value="Shuffle Cells" onclick="shuffle_cell()"></td>
+          <td><input type="button" name="Reset" value="Reset Cells" onclick="reset_cell('white')"></td>
+        </tr>
+
+      </table>    
+    </form>
+  </body>
+</html>
