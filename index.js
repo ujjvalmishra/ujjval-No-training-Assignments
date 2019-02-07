@@ -27,7 +27,7 @@ function getData(path, res){
   })
 
 	promise.then((message) => {
-	  res.send(JSON.stringify(message)); 
+	  res.send(JSON.parse(message)); 
 	})
 	.catch((message) => {
 		console.log(message);
