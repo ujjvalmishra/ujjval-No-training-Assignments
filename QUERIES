@@ -1,0 +1,28 @@
+QUERY:1 => Fetch all non managers of a project with any id
+
+SELECT NAME FROM EMPLOYEE_DETAILS INNER JOIN WORK_IN ON EMPLOYEE_DETAILS.EMP_ID = WORK_IN.EMP_ID WHERE P_ID = 'P1' AND ROLE_ID != 'MGR';
+
+
+
+QUERY:2 => Fetch all employees of a project grouped by their role in project
+
+SELECT * FROM EMPLOYEE_DETAILS WHERE EMP_ID IN(SELECT EMP_ID FROM WORK_IN WHERE P_ID = 'P2' GROUP BY ROLE_ID, EMP_ID);
+
+
+
+QUERY:3 => Fetch first Projects 5 starting with 'aa'
+
+SELECT * FROM PROJECT WHERE P_NAME LIKE 'PRO%' LIMIT 5;
+
+
+
+QUERY:4 => Fetch first to fifth employee who are manager in atleast one of the projects
+
+WITH TEMP AS(SELECT * FROM EMPLOYEE_DETAILS LIMIT 5)SELECT NAME FROM TEMP,WORK_IN WHERE TEMP.EMP_ID = WORK_IN.EMP_ID AND ROLE_ID = 'MGR';
+
+
+
+QUERY:5 => Fetch all the projects which were profitable to the company
+(Hint: Project Cost - Salary of assigned employees to the project for the duration)
+
+ with salary as(select work_in.p_id, sum(salary) from employee_details,work_in where employee_details.emp_id = work_in.emp_id group by work_in.p_id)select p_name from project,salary where project.cost < salary.sum and project.p_id = salary.p_id;
